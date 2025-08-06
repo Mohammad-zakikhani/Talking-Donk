@@ -52,7 +52,6 @@ public class OpenAITTS : MonoBehaviour
     {
         yield return StartCoroutine(RecordWithAutoStop());
 
-        // Local whisper transcription instead of online API
         var task = TranscribeLocal(recordedClip);
         while (!task.IsCompleted) yield return null;
 
@@ -65,16 +64,22 @@ public class OpenAITTS : MonoBehaviour
 
         Debug.Log("🗣 کاربر گفت: " + transcript);
 
+        // Show user message
+        ChatManager.Instance.AddUserMessage(transcript); // 👈 add this
+
         if (audioCache.TryGetValue(transcript, out string cachedPath))
         {
             yield return StartCoroutine(PlayMP3(cachedPath));
             yield break;
         }
 
-        // Continue with ChatGPT and TTS as before
         yield return StartCoroutine(SendToChatGPT(transcript, (chatReply) =>
         {
             Debug.Log("🤖 پاسخ: " + chatReply);
+
+            // Show AI message
+            ChatManager.Instance.AddAIMessage(chatReply); // 👈 add this
+
             StartCoroutine(SendToTTS(chatReply, transcript));
         }));
     }
@@ -224,6 +229,16 @@ public class OpenAITTS : MonoBehaviour
         var bytes = WavUtility.FromAudioClip(clip);
         File.WriteAllBytes(path, bytes);
         Debug.Log("📁 WAV saved to: " + path);
+    }
+
+    public void HandleUserText(string userInput)
+    {
+        StartCoroutine(SendToChatGPT(userInput, (aiReply) =>
+        {
+            Debug.Log("AI responded: " + aiReply);
+            ChatManager.Instance.AddAIMessage(aiReply); // ← SENDS BACK TO CHAT
+            StartCoroutine(SendToTTS(aiReply, userInput)); // optional
+        }));
     }
 }
 

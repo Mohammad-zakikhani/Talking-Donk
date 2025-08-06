@@ -6,6 +6,10 @@ using Michsky.MUIP;
 
 public class ChatManager : MonoBehaviour
 {
+    public static ChatManager Instance { get; private set; }
+    void Awake() => Instance = this;
+
+
     [Header("UI")]
     public TMP_InputField inputField;
     public ButtonManager sendButton;
@@ -53,7 +57,8 @@ public class ChatManager : MonoBehaviour
         AddUserMessage(msg);
         inputField.text = "";
 
-        Invoke(nameof(SimulateAIReply), 1f);
+        // Call OpenAITTS to process and get AI reply
+        FindObjectOfType<OpenAITTS>().HandleUserText(msg);
     }
 
     public void AddUserMessage(string msg)
@@ -91,10 +96,5 @@ public class ChatManager : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 0f;
         Canvas.ForceUpdateCanvases();
-    }
-
-    void SimulateAIReply()
-    {
-        AddAIMessage("این جواب خودکار از طرف AI هست 🤖");
     }
 }
