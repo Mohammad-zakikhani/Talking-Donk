@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
     public ChatManager chatManager;
     public TTSController ttsController;
     public VTTController vttController;
+    public DonkeyCharacterController donkeyController;
     public Brain brain;
 
     void Awake()

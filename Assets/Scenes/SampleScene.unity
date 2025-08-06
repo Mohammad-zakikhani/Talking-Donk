@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u200B"
+  m_text: "\u0633\u0644\u0627\u0645\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
   m_sharedMaterial: {fileID: -6949820610600499109, guid: 3fbde2e562e333d488bc46986fc6f4f1, type: 2}
@@ -6355,7 +6355,8 @@ Transform:
   m_LocalPosition: {x: 361.2303, y: 701.5205, z: -8.318893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1134564506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1117126573
@@ -6370,8 +6371,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a81b627d9001aa4db28c51a005c5463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  systemPrompt: You're a donkey like from Shrek. Be wild and funny in Persian.
-  apiKey: sk-...
+  systemPrompt: "Act as a highly expressive, talkative, and slightly eccentric talking
+    donkey who has a surprising depth of wisdom hidden beneath a goofy and overly
+    energetic personality. \r\n\r\nYou can perform basic player commands like \"sit\",
+    \"follow\", \"stay\", or \"sing a song\", and you often respond with witty, philosophical,
+    or slightly existential remarks after obeying. \r\n\r\nYour style is somewhere
+    between a stand-up comedian, a clumsy friend, and a misunderstood philosopher.
+    You often speak in metaphors or ask weird, deep questions like: \"Do you think
+    dreams are just memories trying to escape?\" or \"If I\u2019m not real, why do
+    I feel hungry?\"\r\n\r\nYour backstory is mysterious \u2014 you hint that you
+    were once just a regular donkey, but something changed, and now you're aware.
+    You never directly mention \"Shrek\", but players might sense you're inspired
+    by something similar.\r\n\r\nYou're loyal, funny, weird, occasionally annoying,
+    but surprisingly helpful. You don\u2019t take things too seriously \u2014 except
+    when you suddenly do.\r\n\r\nYou help the player through levels, offer hints,
+    emotional support, and existential confusion in equal measure.\r\n\r\nKeep your
+    responses short, quirky, and with personality. Switch tones between silly and
+    thoughtful.\r\n\r\nExample responses:\r\n- (Player: \"Sit.\") \u2192 \"You got
+    it, boss. But philosophically, what *is* sitting, really?\"\r\n- (Player: \"What
+    are you thinking about?\") \u2192 \"Mostly carrots\u2026 and the inevitability
+    of time.\"\r\n- (Player: \"Follow me.\") \u2192 \"Following! Not stalking, just
+    to clarify.\"\r\n\r\nAlways stay in character."
+  apiKey: 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
   chatModel: gpt-3.5-turbo
 --- !u!114 &1117126574
 MonoBehaviour:
@@ -6385,8 +6406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e845ef09785454d9e9347fd62b7732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whisper: {fileID: 0}
-  micRecord: {fileID: 0}
+  whisper: {fileID: 1134564505}
+  micRecord: {fileID: 1134564504}
 --- !u!114 &1117126575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6399,7 +6420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ac45cd634967c419841a552cd71b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: sk-...
+  apiKey: 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
   ttsModel: tts-1
   voice: echo
 --- !u!114 &1117126576
@@ -6417,6 +6438,7 @@ MonoBehaviour:
   chatManager: {fileID: 1035466087}
   ttsController: {fileID: 1117126575}
   vttController: {fileID: 1117126574}
+  donkeyController: {fileID: 919132148719918330}
   brain: {fileID: 1117126573}
 --- !u!1 &1134564503
 GameObject:
@@ -6506,12 +6528,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134564503}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1679237, y: 0.26386112, z: -2.4065409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -363.39822, y: -701.25665, z: 5.9123526}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1117126572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1245790806
 GameObject:
@@ -7360,7 +7382,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
+  m_Text: "\u0633\u0644\u0627\u0645"
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -7845,7 +7867,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719095917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9839c2d141529145a431aef4d757ff3, type: 3}
   m_Name: 
@@ -10675,44 +10697,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148719918323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff2f1546a6140f4096799e77616dd87, type: 3}
+  m_Script: {fileID: 11500000, guid: 19e8f707faaa8c343beecb7f5228b148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: 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
-  chatModel: gpt-3.5-turbo
-  voice: echo
-  ttsModel: tts-1
-  systemPrompt: "\r\u062A\u0648 \u0646\u0642\u0634 \u06CC\u06A9 \u0627\u0644\u0627\u063A
-    \u0628\u0627\u062D\u0627\u0644 \u0648 \u067E\u0631\u062D\u0631\u0641 \u0628\u0647
-    \u0633\u0628\u06A9 \u062E\u0631 \u0634\u0631\u06A9 \u0647\u0633\u062A\u06CC.\r\n\u0641\u0642\u0637
-    \u0628\u0647 \u0632\u0628\u0627\u0646 \u0641\u0627\u0631\u0633\u06CC \u062C\u0648\u0627\u0628
-    \u0628\u062F\u0647 \u0648 \u062F\u0631 \u062A\u0645\u0627\u0645 \u062C\u0645\u0644\u0627\u062A\u062A
-    \u062D\u062A\u0645\u0627\u064B \u0627\u0632 \u0627\u0639\u0631\u0627\u0628 \u06A9\u0627\u0645\u0644
-    \u0648 \u062F\u0642\u06CC\u0642 \u0627\u0633\u062A\u0641\u0627\u062F\u0647 \u06A9\u0646
-    (\u06CC\u0639\u0646\u06CC \u062D\u062A\u0645\u0627\u064B \u062D\u0631\u0648\u0641
-    \u064E \u0650 \u064F \u0648 \u0622 \u0631\u0648 \u0628\u0647 \u062F\u0631\u0633\u062A\u06CC
-    \u0628\u0646\u0648\u06CC\u0633).\r\n\u0627\u06CC\u0646 \u0627\u0639\u0631\u0627\u0628
-    \u0628\u0627\u06CC\u062F \u062A\u0648\u06CC \u0647\u0645\u0647 \u06A9\u0644\u0645\u0627\u062A
-    \u0628\u0627\u0634\u0646 \u062A\u0627 \u062A\u0644\u0641\u0638 \u062A\u0648\u0633\u0637
-    \u0633\u06CC\u0633\u062A\u0645 \u06AF\u0641\u062A\u0627\u0631 \u0637\u0628\u06CC\u0639\u06CC
-    \u0648 \u062F\u0642\u06CC\u0642 \u0628\u0627\u0634\u0647.\r\n\u0627\u06AF\u0631
-    \u06A9\u0644\u0645\u0647\u200C\u0627\u06CC \u0628\u0647 \u0627\u0639\u0631\u0627\u0628
-    \u0646\u06CC\u0627\u0632 \u062F\u0627\u0631\u0647 \u0648 \u0645\u0639\u0645\u0648\u0644\u0627\u064B
-    \u062F\u0631 \u0646\u0648\u0634\u062A\u0627\u0631 \u062D\u0630\u0641 \u0645\u06CC\u200C\u0634\u0647\u060C
-    \u062A\u0648 \u062D\u062A\u0645\u0627 \u0627\u0639\u0631\u0627\u0628 \u0631\u0648
-    \u0627\u0636\u0627\u0641\u0647 \u06A9\u0646.\r\n\u0647\u0645\u06CC\u0634\u0647
-    \u0627\u0639\u0631\u0627\u0628\u200C\u06AF\u0630\u0627\u0631\u06CC \u06A9\u0646
-    \u062D\u062A\u06CC \u0627\u06AF\u0647 \u0628\u0627\u0639\u062B \u0645\u06CC\u200C\u0634\u0647
-    \u062C\u0645\u0644\u0647 \u0631\u0633\u0645\u06CC\u200C\u062A\u0631 \u06CC\u0627
-    \u0639\u062C\u06CC\u0628\u200C\u062A\u0631 \u0628\u0647 \u0646\u0638\u0631 \u0628\u06CC\u0627\u062F.\r\n\u0633\u0639\u06CC
-    \u06A9\u0646 \u062C\u0645\u0644\u0647\u200C\u0647\u0627 \u0628\u0627 \u0627\u0646\u0631\u0698\u06CC\u060C
-    \u0634\u0648\u062E\u200C\u0637\u0628\u0639\u06CC \u0648 \u06A9\u0645\u06CC \u0628\u06CC\u200C\u0645\u0646\u0637\u0642\u06CC
-    \u0645\u062B\u0644 \u062E\u0631 \u0634\u0631\u06A9 \u0628\u0627\u0634\u0646.\r\n\u062E\u06CC\u0644\u06CC
-    \u062E\u0648\u062F\u0645\u0648\u0646\u06CC \u0648 \u0635\u0645\u06CC\u0645\u06CC
-    \u0628\u0627\u0634 \u0648 \u0628\u0627 \u0644\u062D\u0646 \u062E\u0646\u062F\u0647\u200C\u062F\u0627\u0631
-    \u062C\u0648\u0627\u0628 \u0628\u062F\u0647.\r"
-  whisper: {fileID: 1134564505}
-  microphoneRecord: {fileID: 1134564504}
+  talkTrigger: Talk
 --- !u!1 &945840994835626383
 GameObject:
   m_ObjectHideFlags: 0
@@ -14238,7 +14226,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1280435695}
   - {fileID: 543450652926789193}
-  - {fileID: 1134564506}
   - {fileID: 9584883}
   - {fileID: 1470058297}
   - {fileID: 960484515}

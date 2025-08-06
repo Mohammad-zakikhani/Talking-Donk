@@ -7,10 +7,8 @@ using Michsky.MUIP;
 public class ChatManager : MonoBehaviour
 {
     public static ChatManager Instance { get; private set; }
-    void Awake() => Instance = this;
 
-
-    [Header("UI")]
+    [Header("UI References")]
     public TMP_InputField inputField;
     public ButtonManager sendButton;
     public ScrollRect scrollRect;
@@ -30,13 +28,57 @@ public class ChatManager : MonoBehaviour
 
     private Queue<ChatMessageUI> userPool = new Queue<ChatMessageUI>();
     private Queue<ChatMessageUI> aiPool = new Queue<ChatMessageUI>();
-    private int poolSize = 20;
+    private const int poolSize = 20;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     void Start()
     {
         sendButton.onClick.AddListener(OnUserSend);
         PrewarmPool(userMessagePrefab, userPool);
         PrewarmPool(aiMessagePrefab, aiPool);
+    }
+
+    void OnUserSend()
+    {
+        string msg = inputField.text;
+        if (string.IsNullOrWhiteSpace(msg)) return;
+
+        AddUserMessage(msg);
+        inputField.text = "";
+
+        // Send message to Brain through RoomManager
+        RoomManager.Instance.brain.ProcessUserInput(msg);
+    }
+
+    public void AddUserMessage(string msg)
+    {
+        ChatMessageUI chatMsg = GetFromPool(userPool, userMessagePrefab);
+        SetupMessage(chatMsg, userProfilePic, userName, msg);
+    }
+
+    public void AddAIMessage(string msg)
+    {
+        ChatMessageUI chatMsg = GetFromPool(aiPool, aiMessagePrefab);
+        SetupMessage(chatMsg, aiProfilePic, aiName, msg);
+    }
+
+    void SetupMessage(ChatMessageUI chatMsg, Sprite avatar, string senderName, string message)
+    {
+        chatMsg.transform.SetParent(chatContent, false);
+        chatMsg.transform.SetAsLastSibling();
+        chatMsg.gameObject.SetActive(true);
+        chatMsg.SetMessage(avatar, senderName, message);
+        ScrollToBottom();
     }
 
     void PrewarmPool(ChatMessageUI prefab, Queue<ChatMessageUI> pool)
@@ -48,40 +90,6 @@ public class ChatManager : MonoBehaviour
             pool.Enqueue(msg);
         }
     }
-
-    void OnUserSend()
-    {
-        string msg = inputField.text;
-        if (string.IsNullOrWhiteSpace(msg)) return;
-
-        AddUserMessage(msg);
-        inputField.text = "";
-
-        // Call OpenAITTS to process and get AI reply
-        FindObjectOfType<OpenAITTS>().HandleUserText(msg);
-    }
-
-    public void AddUserMessage(string msg)
-    {
-        ChatMessageUI chatMsg = GetFromPool(userPool, userMessagePrefab);
-        chatMsg.transform.SetParent(chatContent, false);
-        chatMsg.transform.SetAsLastSibling(); // 🔥 important
-        chatMsg.gameObject.SetActive(true);
-        chatMsg.SetMessage(userProfilePic, userName, msg);
-        ScrollToBottom();
-    }
-
-
-    public void AddAIMessage(string msg)
-    {
-        ChatMessageUI chatMsg = GetFromPool(aiPool, aiMessagePrefab);
-        chatMsg.transform.SetParent(chatContent, false);
-        chatMsg.transform.SetAsLastSibling(); // 🔥 keeps correct order
-        chatMsg.gameObject.SetActive(true);
-        chatMsg.SetMessage(aiProfilePic, aiName, msg);
-        ScrollToBottom();
-    }
-
 
     ChatMessageUI GetFromPool(Queue<ChatMessageUI> pool, ChatMessageUI prefab)
     {

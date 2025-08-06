@@ -56,10 +56,10 @@ public class TTSController : MonoBehaviour
         var www = new WWW("file://" + path);
         yield return www;
 
-        var audioSource = GetComponent<AudioSource>() ?? gameObject.AddComponent<AudioSource>();
-        audioSource.clip = www.GetAudioClip(false, false, AudioType.MPEG);
-        audioSource.Play();
+        var clip = www.GetAudioClip(false, false, AudioType.MPEG);
+        RoomManager.Instance.donkeyController.PlayAudio(clip);
     }
+
 
     string EscapeJson(string text) => text.Replace("\"", "\\\"");
 }
